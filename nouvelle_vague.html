@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Discos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nouvelle_vague.css">
+</head>
+<>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="logo" id="logo">LOGO</div>
+        <div class="search-category-container">
+        <div class="category-container">
+          <button class="category-button" id="categoryButton">Todos</button>
+          <div class="dropdown" id="genreDropdown">
+              <span class="dropdown-item" data-genre="todos">Todos</span>
+              <span class="dropdown-item" data-genre="rock">Rock</span>
+              <span class="dropdown-item" data-genre="jazz">Jazz</span>
+              <span class="dropdown-item" data-genre="pop">Pop</span>
+              <span class="dropdown-item" data-genre="MPB">MPB</span>
+          </div>
+        </div>
+        <div class="search-bar">
+              <input type="text" id="searchInput" placeholder="Pesquise o seu disco favorito...">
+            <button id="searchButton" class="search-button">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImJsYWNrIiBkPSJtMTkuNiAyMWwtNi4zLTYuM3EtLjc1LjYtMS43MjUuOTVUOS41IDE2cS0yLjcyNSAwLTQuNjEyLTEuODg4VDMgOS41dDEuODg4LTQuNjEyVDkuNSAzdDQuNjEzIDEuODg4VDE2IDkuNXEwIDEuMS0uMzUgMi4wNzVUMTQuNyAxMy4zbDYuMyA2LjN6TTkuNSAxNHExLjg3NSAwIDMuMTg4LTEuMzEyVDE0IDkuNXQtMS4zMTItMy4xODdUOS41IDVUNi4zMTMgNi4zMTNUNSA5LjV0MS4zMTMgMy4xODhUOS41IDE0Ii8+PC9zdmc+" alt="Search Button">
+            </button>
+        </div>
+      </div>
+        <div class="user-cart-icons">
+            <span class="user-icon">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNMTIgNGE0IDQgMCAwIDEgNCA0YTQgNCAwIDAgMS00IDRhNCA0IDAgMCAxLTQtNGE0IDQgMCAwIDEgNC00bTAgMTBjNC40MiAwIDggMS43OSA4IDR2Mkg0di0yYzAtMi4yMSAzLjU4LTQgOC00Ii8+PC9zdmc+" alt="User Icon">
+            </span>
+            <span class="cart-icon" id="cartIcon">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBkPSJNMy45NzcgOS44NEEyIDIgMCAwIDEgNS45NzEgOGgxMi4wNThhMiAyIDAgMCAxIDEuOTk0IDEuODRsLjgwMyAxMEEyIDIgMCAwIDEgMTguODMzIDIySDUuMTY3YTIgMiAwIDAgMS0xLjk5My0yLjE2eiIvPjxwYXRoIGQ9Ik0xNiAxMVY2YTQgNCAwIDAgMC00LTR2MGE0IDQgMCAwIDAtNCA0djUiLz48L2c+PC9zdmc+" alt="Cart Icon"
+            </span>
+        </div>
+    </header>
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" class="input-field" required>
+            <label for="password">Senha:</label>
+            <input type="text" id="password" name="password" class="input-field" required>
+            <button type="submit" class="login-button">Login</button>
+        </form> 
+    </div>
+</div>
+
+<div id="cartModal" class="modal">
+    <div class="modal-content">
+        <span class="close-cart">&times;</span>
+        <h2>Carrinho de Compras</h2>
+        <div id="cartItems"></div>
+        <div id="cartSubtotal"></div>
+        <button id="checkoutButton" class="login-button">Finalizar Compra</button>
+    </div>
+</div>
+    <!-- Seção de Produtos em Destaque -->
+    <section class="highlighted-products">
+        <h2>produtos em destaque</h2>
+        <div class="product-carousel">
+            <button class="carousel-arrow">❮</button>
+            <div class="product-list">
+                <div class="product" data-name="Jose Carlos Araujo Garotinho– Vascão Bicampeão 87/88" data-price="50.00" data-genre="jazz">
+                    <img src="https://vinils3.s3.amazonaws.com/wp-content/uploads/2024/10/30132759/9-5.jpg" alt="Vascão">
+                    <p>Jose Carlos Araujo “Garotinho” – Vascão Bicampeão 87/88</p>
+                    <span>R$50,00</span>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product" data-name="Rhythm Heritage – Last Night On Earth" data-price="50.00" data-genre="rock">
+                    <img src="https://vinils3.s3.amazonaws.com/wp-content/uploads/2024/10/30134028/11-5.jpg" alt="Rhythm Heritage">
+                    <p>Rhythm Heritage – Last Night On Earth</p>
+                    <span>R$50,00</span>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product" data-name="J.R. Funk And The Love Machine – Feel Good, Party Time"data-price="50.00" data-genre="pop">
+                    <img src="https://vinils3.s3.amazonaws.com/wp-content/uploads/2024/11/01134302/R-906867-1334774144.jpg" alt="J.R. Funk">
+                    <p>J.R. Funk And The Love Machine – Feel Good, Party Time</p>
+                    <span>R$50,00</span>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product" data-name="Ruido Jovem Vol.4"data-price="50.00"data-genre="MPB">
+                    <img src="https://vinils3.s3.amazonaws.com/wp-content/uploads/2024/11/06093408/Ruido-Jovem-Vol.4.jpg" alt="Ruido Jovem">
+                    <p>Ruido Jovem Vol.4</p>
+                    <span>R$50,00</span>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <button class="carousel-arrow">❯</button>
+        </div>
+    </section>
+
+    <!-- Seção de Produtos em Promoção -->
+    <section class="promotional-products">
+        <h2>produtos em promoção</h2>
+        <div class="promotion-carousel">
+            <button class="carousel-arrow">❮</button>
+            <div class="promotion-list">
+                <!-- Espaço para produtos em promoção -->
+                <div class="promo-placeholder"></div>
+                <div class="promo-placeholder"></div>
+                <div class="promo-placeholder"></div>
+            </div>
+            <button class="carousel-arrow">❯</button>
+        </div>
+    </section>
+    <div id="notification" class="notification"></div>
+    <script src="nouvelle_vague.js"></script>
+</body>
+</html>
