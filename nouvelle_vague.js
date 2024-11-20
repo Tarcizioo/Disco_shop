@@ -204,3 +204,81 @@ checkoutButton.addEventListener('click', () => {
     cartModal.style.display = 'none';
     showNotification('Compra finalizada com sucesso!');
 });
+const searchInput = document.getElementById('searchInput');
+const clearSearchButton = document.getElementById('clearSearch');
+
+// Mostrar o botão "x" quando o usuário digitar algo
+searchInput.addEventListener('input', () => {
+    if (searchInput.value) {
+        clearSearchButton.style.display = 'inline';
+    } else {
+        clearSearchButton.style.display = 'none';
+    }
+});
+
+// Limpar a barra de pesquisa quando o botão "x" for clicado
+clearSearchButton.addEventListener('click', () => {
+    searchInput.value = '';
+    clearSearchButton.style.display = 'none';
+    searchInput.focus(); // Voltar o foco para a barra de pesquisa
+});
+const favoriteIcon = document.getElementById('favoriteIcon');
+const favoritesModal = document.getElementById('favoritesModal');
+const closeFavoritesButton = document.querySelector('.close-favorites');
+const favoritesItemsContainer = document.getElementById('favoritesItems');
+let favorites = [];
+
+// Função para adicionar ou remover dos favoritos
+favoriteIcon.addEventListener('click', () => {
+    const productName = 'Nome do Produto'; // Você pode modificar isso para capturar o nome do produto atual
+    const productIndex = favorites.indexOf(productName);
+
+    if (productIndex === -1) {
+        favorites.push(productName);
+        showNotification(`${productName} foi adicionado aos favoritos!`);
+    } else {
+        favorites.splice(productIndex, 1);
+        showNotification(`${productName} foi removido dos favoritos!`);
+    }W
+    updateFavoritesIcon();
+    updateFavoritesItems();
+});
+
+// Função para atualizar o ícone dos favoritos
+function updateFavoritesIcon() {
+    if (favorites.length > 0) {
+        favoriteIcon.querySelector('img').style.fill = 'red'; // Modifica o ícone para indicar que há favoritos
+    } else {
+        favoriteIcon.querySelector('img').style.fill = 'white'; // Restaura a cor original
+    }
+}
+
+// Função para abrir o modal de favoritos
+favoriteIcon.addEventListener('click', () => {
+    favoritesModal.style.display = 'block';
+    updateFavoritesItems();
+});
+
+// Função para fechar o modal de favoritos
+closeFavoritesButton.addEventListener('click', () => {
+    favoritesModal.style.display = 'none';
+});
+
+// Função para atualizar os itens de favoritos
+function updateFavoritesItems() {
+    favoritesItemsContainer.innerHTML = '';
+
+    favorites.forEach(item => {
+        const favoriteItem = document.createElement('div');
+        favoriteItem.classList.add('favorite-item');
+        favoriteItem.innerHTML = `
+            <p>${item}</p>
+        `;
+        favoritesItemsContainer.appendChild(favoriteItem);
+    });
+}
+
+// Chamada inicial para definir o estado do ícone
+updateFavoritesIcon();
+updateFavoritesItems();
+
