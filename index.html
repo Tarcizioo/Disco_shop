@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="nouvelle_vague.css">
 </head>
-<>
     <!-- Cabeçalho -->
     <header class="header">
         <div class="logo" id="logo">LOGO</div>
@@ -26,7 +25,8 @@
         </div>
         <div class="search-bar">
               <input type="text" id="searchInput" placeholder="Pesquise o seu disco favorito...">
-            <button id="searchButton" class="search-button">
+            <button id="clearSearch" class="clear-search" style="display: none;">X</button>
+              <button id="searchButton" class="search-button">
                 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImJsYWNrIiBkPSJtMTkuNiAyMWwtNi4zLTYuM3EtLjc1LjYtMS43MjUuOTVUOS41IDE2cS0yLjcyNSAwLTQuNjEyLTEuODg4VDMgOS41dDEuODg4LTQuNjEyVDkuNSAzdDQuNjEzIDEuODg4VDE2IDkuNXEwIDEuMS0uMzUgMi4wNzVUMTQuNyAxMy4zbDYuMyA2LjN6TTkuNSAxNHExLjg3NSAwIDMuMTg4LTEuMzEyVDE0IDkuNXQtMS4zMTItMy4xODdUOS41IDVUNi4zMTMgNi4zMTNUNSA5LjV0MS4zMTMgMy4xODhUOS41IDE0Ii8+PC9zdmc+" alt="Search Button">
             </button>
         </div>
@@ -34,6 +34,9 @@
         <div class="user-cart-icons">
             <span class="user-icon">
                 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNMTIgNGE0IDQgMCAwIDEgNCA0YTQgNCAwIDAgMS00IDRhNCA0IDAgMCAxLTQtNGE0IDQgMCAwIDEgNC00bTAgMTBjNC40MiAwIDggMS43OSA4IDR2Mkg0di0yYzAtMi4yMSAzLjU4LTQgOC00Ii8+PC9zdmc+" alt="User Icon">
+            </span>
+            <span class="favorite-icon" id="favoriteIcon">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M2 9.137C2 14 6.02 16.591 8.962 18.911C10 19.729 11 20.5 12 20.5s2-.77 3.038-1.59C17.981 16.592 22 14 22 9.138S16.5.825 12 5.501C7.5.825 2 4.274 2 9.137'/%3E%3C/svg%3E" alt="Favorite Icon">
             </span>
             <span class="cart-icon" id="cartIcon">
                 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBkPSJNMy45NzcgOS44NEEyIDIgMCAwIDEgNS45NzEgOGgxMi4wNThhMiAyIDAgMCAxIDEuOTk0IDEuODRsLjgwMyAxMEEyIDIgMCAwIDEgMTguODMzIDIySDUuMTY3YTIgMiAwIDAgMS0xLjk5My0yLjE2eiIvPjxwYXRoIGQ9Ik0xNiAxMVY2YTQgNCAwIDAgMC00LTR2MGE0IDQgMCAwIDAtNCA0djUiLz48L2c+PC9zdmc+" alt="Cart Icon"
@@ -63,9 +66,17 @@
         <button id="checkoutButton" class="login-button">Finalizar Compra</button>
     </div>
 </div>
+
+<div id="favoritesModal" class="modal">
+    <div class="modal-content">
+        <span class="close-favorites">&times;</span>
+        <h2>Favoritos</h2>
+        <div id="favoritesItems"></div>
+    </div>
+</div>
     <!-- Seção de Produtos em Destaque -->
     <section class="highlighted-products">
-        <h2>produtos em destaque</h2>
+        <h2>Produtos em destaque</h2>
         <div class="product-carousel">
             <button class="carousel-arrow">❮</button>
             <div class="product-list">
@@ -74,6 +85,9 @@
                     <p>Jose Carlos Araujo “Garotinho” – Vascão Bicampeão 87/88</p>
                     <span>R$50,00</span>
                     <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    <button class="favorite-button">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M2 9.137C2 14 6.02 16.591 8.962 18.911C10 19.729 11 20.5 12 20.5s2-.77 3.038-1.59C17.981 16.592 22 14 22 9.138S16.5.825 12 5.501C7.5.825 2 4.274 2 9.137'/%3E%3C/svg%3E" alt="Favorite">    
+                    </button>
                 </div>
                 <div class="product" data-name="Rhythm Heritage – Last Night On Earth" data-price="50.00" data-genre="rock">
                     <img src="https://vinils3.s3.amazonaws.com/wp-content/uploads/2024/10/30134028/11-5.jpg" alt="Rhythm Heritage">
@@ -100,7 +114,7 @@
 
     <!-- Seção de Produtos em Promoção -->
     <section class="promotional-products">
-        <h2>produtos em promoção</h2>
+        <h2>Produtos em promoção</h2>
         <div class="promotion-carousel">
             <button class="carousel-arrow">❮</button>
             <div class="promotion-list">
